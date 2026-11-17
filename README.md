@@ -64,13 +64,16 @@ would wire in a real LLM and embedder (pseudo-code for the model calls):
 ```python
 from document_qa.qa import DocumentQA
 
+
 def my_llm(prompt: str) -> str:
     # call your model of choice (OpenAI, local, etc.) and return the text
     return my_model.complete(prompt)
 
+
 def my_embedder(text: str) -> list[float]:
     # return an embedding vector for the text
     return my_model.embed(text)
+
 
 document = "... your document text ..."
 qa = DocumentQA(
@@ -82,8 +85,8 @@ qa = DocumentQA(
 )
 
 result = qa.answer("What does the document say about X?")
-print(result.answer)        # the grounded answer
-print(result.prompt)        # the exact cited prompt that was sent
+print(result.answer)  # the grounded answer
+print(result.prompt)  # the exact cited prompt that was sent
 for scored in result.passages:
     print(scored.score, scored.chunk.text)
 ```
